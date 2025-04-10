@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://dellkufmfrowy"]
+
+[ext_resource type="Script" path="res://src/main_menu.gd" id="1_sakh1"]
+[ext_resource type="Texture2D" uid="uid://nvsuj5gyg5mu" path="res://assets/beach_205x122.png" id="2_2agad"]
+[ext_resource type="Texture2D" uid="uid://2qcb3ekd1722" path="res://assets/UI/SettingsBackground.png" id="3_k450r"]
+[ext_resource type="Texture2D" uid="uid://brnruafs4w8c6" path="res://assets/UI/GreenButton.png" id="4_4m4n8"]
+[ext_resource type="Texture2D" uid="uid://bgfmpviitttf" path="res://assets/UI/GreenButtonPressed.png" id="5_5cktd"]
+[ext_resource type="AudioStream" uid="uid://dfgflbdg56lof" path="res://assets/music/time_for_adventure.mp3" id="6_48uyl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ffqk1"]
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_p8tl1"]
+font_size = 26
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_sakh1")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2agad")
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/TextureRect/CenterContainer"]
+custom_minimum_size = Vector2(512, 512)
+layout_mode = 2
+texture = ExtResource("3_k450r")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/TextureRect/CenterContainer"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="Control/TextureRect/CenterContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_4m4n8")
+texture_pressed = ExtResource("5_5cktd")
+
+[node name="Label" type="Label" parent="Control/TextureRect/CenterContainer/VBoxContainer/TextureButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "PLAY"
+label_settings = SubResource("LabelSettings_ffqk1")
+
+[node name="TextureButton2" type="TextureButton" parent="Control/TextureRect/CenterContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_4m4n8")
+texture_pressed = ExtResource("5_5cktd")
+
+[node name="Label" type="Label" parent="Control/TextureRect/CenterContainer/VBoxContainer/TextureButton2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "QUIT"
+label_settings = SubResource("LabelSettings_p8tl1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_48uyl")
+autoplay = true
+parameters/looping = true
+
+[connection signal="pressed" from="Control/TextureRect/CenterContainer/VBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Control/TextureRect/CenterContainer/VBoxContainer/TextureButton2" to="." method="_on_texture_button_2_pressed"]

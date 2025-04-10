@@ -6,7 +6,6 @@
 texture = ExtResource("1_15lhf")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
-0:0/0/custom_data_0 = 20
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
@@ -114,6 +113,9 @@ texture = ExtResource("1_15lhf")
 2:11/0 = 0
 3:11/0 = 0
 4:11/0 = 0
+4:11/0/z_index = 1
+4:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -4, -8, 8, 8, 8, 8, -4)
+4:11/0/custom_data_0 = true
 5:11/0 = 0
 0:12/0 = 0
 1:12/0 = 0
@@ -138,6 +140,6 @@ texture = ExtResource("1_15lhf")
 
 [resource]
 physics_layer_0/collision_layer = 1
-custom_data_layer_0/name = "damage_per_second"
-custom_data_layer_0/type = 2
+custom_data_layer_0/name = "damage"
+custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_u5wub")

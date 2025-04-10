@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://b38b2rfk6x28o"]
+
+[ext_resource type="Script" path="res://src/game.gd" id="1_2e7hx"]
+[ext_resource type="PackedScene" uid="uid://bsmctc0vdpl7c" path="res://src/UI.tscn" id="1_r1u5j"]
+[ext_resource type="PackedScene" uid="uid://c8s7fqva1keer" path="res://src/Level.tscn" id="2_kdhhg"]
+[ext_resource type="PackedScene" uid="uid://bptlqsvqah0ur" path="res://src/Parallax.tscn" id="3_2asgx"]
+[ext_resource type="PackedScene" uid="uid://ci78auvmr4afd" path="res://src/PauseMenu.tscn" id="4_seu86"]
+[ext_resource type="PackedScene" uid="uid://7t7sk4ycfct4" path="res://src/DeathMenu.tscn" id="5_fhv5y"]
+[ext_resource type="AudioStream" uid="uid://dfgflbdg56lof" path="res://assets/music/time_for_adventure.mp3" id="7_gnhy4"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_2e7hx")
+
+[node name="Level" parent="." instance=ExtResource("2_kdhhg")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("1_r1u5j")]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 6
+
+[node name="PauseMenu" parent="CanvasLayer2" instance=ExtResource("4_seu86")]
+process_mode = 3
+visible = false
+
+[node name="DeathMenu" parent="CanvasLayer2" instance=ExtResource("5_fhv5y")]
+process_mode = 3
+visible = false
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("3_2asgx")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_gnhy4")
+autoplay = true
+parameters/looping = true

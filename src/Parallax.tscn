@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://bptlqsvqah0ur"]
+
+[ext_resource type="Texture2D" uid="uid://nvsuj5gyg5mu" path="res://assets/beach_205x122.png" id="1_5w3km"]
+[ext_resource type="Texture2D" uid="uid://d1jr24wmribx4" path="res://assets/UI/StarIcon.png" id="2_dye1a"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+scroll_base_scale = Vector2(1, 0)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(820, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+scale = Vector2(4, 4)
+texture = ExtResource("1_5w3km")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(1000, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer2"]
+texture = ExtResource("2_dye1a")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxLayer2"]
+position = Vector2(250, 0)
+texture = ExtResource("2_dye1a")
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxLayer2"]
+position = Vector2(500, 0)
+texture = ExtResource("2_dye1a")
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxLayer2"]
+position = Vector2(750, 0)
+texture = ExtResource("2_dye1a")

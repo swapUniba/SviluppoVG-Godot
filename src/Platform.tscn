@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://0ujq4ne8d2n7"]
+
+[ext_resource type="Texture2D" uid="uid://5c2bxc016tyh" path="res://assets/sprites/platforms.png" id="1_d7r8h"]
+[ext_resource type="Script" path="res://src/platform.gd" id="1_qlcow"]
+
+[sub_resource type="Curve2D" id="Curve2D_6i1nb"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2, -64, 0, 0, 0, 0, -2, 64)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bgbs5"]
+size = Vector2(28, 10)
+
+[sub_resource type="Animation" id="Animation_dkeqf"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(-1.55, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_i7i0x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lhqo5"]
+_data = {
+"RESET": SubResource("Animation_i7i0x"),
+"move": SubResource("Animation_dkeqf")
+}
+
+[node name="Platform" type="Path2D"]
+curve = SubResource("Curve2D_6i1nb")
+script = ExtResource("1_qlcow")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+position = Vector2(-2, -64)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+texture = ExtResource("1_d7r8h")
+region_enabled = true
+region_rect = Rect2(16, 0, 32, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+shape = SubResource("RectangleShape2D_bgbs5")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(-2, -64)
+rotation = 1.5708
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
+remote_path = NodePath("../../AnimatableBody2D")
+update_rotation = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_process = 0
+libraries = {
+"": SubResource("AnimationLibrary_lhqo5")
+}

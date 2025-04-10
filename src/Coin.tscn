@@ -1,6 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://bjw2pv8b3j05k"]
+[gd_scene load_steps=18 format=3 uid="uid://bjw2pv8b3j05k"]
 
+[ext_resource type="Script" path="res://src/coin.gd" id="1_agjxg"]
 [ext_resource type="Texture2D" uid="uid://ggfypww786gl" path="res://assets/sprites/coin.png" id="1_jemsn"]
+[ext_resource type="AudioStream" uid="uid://bjtckuktjupyc" path="res://assets/sounds/coin.wav" id="3_30jml"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0k72e"]
 radius = 8.544
@@ -98,6 +100,9 @@ animations = [{
 }]
 
 [node name="Coin" type="Area2D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_agjxg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0k72e")
@@ -105,3 +110,9 @@ debug_color = Color(0.958588, 0, 0.526315, 0.42)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ofhti")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_30jml")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
